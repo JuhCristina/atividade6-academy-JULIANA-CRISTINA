@@ -14,3 +14,7 @@ Scenario: O usuário a ser removido deve ser localizado através de seu identifi
 Scenario: um usuário não for localizado pelo identificador informado, o sistema deverá se comportar como se houvesse removido as informações do usuário.
     When informo usuário ou email já removido
     Then visualizo a mensagem de usuário não existe "Ops! Não existe nenhum usuário para ser exibido."
+
+Scenario: o cancelamento da ação de remover usuário, não deve apagá-lo
+    When executo a ação de remover usuário e cancelo a operação
+    Then visualizo que o usuário ainda está cadastrado

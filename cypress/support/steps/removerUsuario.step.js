@@ -29,3 +29,15 @@ When("informo usuário ou email já removido", () => {
 Then("visualizo a mensagem de usuário não existe {string}", (mensagemExcluido) => {
     cy.contains(mensagemExcluido).should("be.visible");
 });
+
+When("executo a ação de remover usuário e cancelo a operação", () => {
+    cy.interceptarRemover();
+    cy.wait(1000);
+    removerUsuarioPage.pesquisaName("Mia");
+    removerUsuarioPage.botaoLixeira();
+    removerUsuarioPage.botaoCancelar();
+});
+
+Then("visualizo que o usuário ainda está cadastrado", (mensagemExcluido) => {
+    cy.contains("Mia").should("be.visible");
+});

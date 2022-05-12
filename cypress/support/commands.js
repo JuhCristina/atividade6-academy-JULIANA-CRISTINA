@@ -24,6 +24,17 @@ Cypress.Commands.add("interceptarAtualizar", () => {
     })
 });
 
+Cypress.Commands.add("interceptarListar", () => {
+    cy.intercept("https://crud-api-academy.herokuapp.com/api/v1/users", {
+        fixture: "listar.json"
+    })
+});
+
+Cypress.Commands.add("interceptarVazio", () => {
+    cy.intercept("https://crud-api-academy.herokuapp.com/api/v1/users", 
+    [])
+});
+
 //
 //
 // -- This is a child command --

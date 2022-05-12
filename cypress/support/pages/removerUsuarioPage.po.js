@@ -19,6 +19,10 @@ class RemoverUsuarioPage {
         cy.contains("button", "Confirmar").click({ force: true });
     }
 
+    botaoCancelar () {
+        cy.contains("button", "Cancelar").click({ force: true });
+    }
+
     criarUsuarioParaRemover (nameAleatorio, emailAleatorio) {
         var nameAleatorio = "Brian O Conner"
         var currentTimeInMilliseconds = Date.now();

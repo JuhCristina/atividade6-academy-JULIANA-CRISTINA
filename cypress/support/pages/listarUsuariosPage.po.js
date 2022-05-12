@@ -32,6 +32,21 @@ class ListarUsuarioPage {
         cy.wait(1000);
         cy.visit("https://academy-crud-frontend.herokuapp.com/users");
     }
+
+    cadTesteEmail (nameAleatorio, emailAleatorio) {
+        var nameAleatorio = "Hoobastank"
+        var currentTimeInMilliseconds = Date.now();
+        var emailAleatorio = currentTimeInMilliseconds + "thereason@gmail.com"
+
+        cy.visit("");
+        cy.contains("Novo").click({force: true});
+        cy.get(this.inputName).type(nameAleatorio, { force: true });
+        cy.get(this.inputEmail).type(emailAleatorio, {force: true});
+        cy.contains("button", "Salvar").click({force: true});
+        cy.wait(1000);
+        cy.visit("https://academy-crud-frontend.herokuapp.com/users");
+    }
+
 }
 
 export var listarUsuarioPage = new ListarUsuarioPage();

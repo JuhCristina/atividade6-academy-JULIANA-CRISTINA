@@ -14,6 +14,15 @@ Then("visualizo usuarios com o nome pesquisado", () => {
     cy.contains("Viviane");
 });
 
+When("pesquiso um usuário por email", () => {
+    listarUsuarioPage.cadTesteEmail();
+    listarUsuarioPage.pesquisaName("thereason");
+});
+
+Then("visualizo o usuario com o email pesquisado", () => {
+    cy.contains("therea").should("be.visible");
+});
+
 When("pesquiso por um usuário ou email inexistente", () => {
     listarUsuarioPage.pesquisaName("Barata Voadora");
 });
@@ -38,4 +47,27 @@ When("pesquiso um usuário ou email com parte de texto", () => {
 
 Then("visualizo usuarios com o parte do texto pesquisado", () => {
     cy.contains("Viviane");
+});
+
+When("deve ser listado todos os usuarios cadastrados", () => {
+    cy.interceptarListar();
+    cy.visit("https://academy-crud-frontend.herokuapp.com/users");
+});
+
+Then("visualizo todos os usuarios", () => {
+    cy.contains("Mia").should("be.visible");
+    cy.contains("Fenix").should("be.visible");
+    cy.contains("Queen").should("be.visible");
+    cy.contains("ACDC").should("be.visible");
+    cy.contains("Socorro").should("be.visible");
+    cy.contains("Galvao").should("be.visible");
+});
+
+When("não tem cadastro de usuarios", () => {
+    cy.interceptarVazio();
+    cy.visit("https://academy-crud-frontend.herokuapp.com/users");
+});
+
+Then("visualizo a opção de cadastrar um novo usuario", () => {
+    cy.contains("Cadastre um novo usuário").should("be.visible");
 });
