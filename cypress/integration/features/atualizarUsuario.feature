@@ -12,7 +12,7 @@ Scenario: O usuário deve ser localizado através de seu identificador único.
 
 Scenario: Caso nenhum usuário seja localizado pelo identificador único, a atualização não deve ser realizada.
     When informo um usuário não cadastrado para atualizar
-    Then visualizo a mensagem "Ops! Não existe nenhum usuário para ser exibido."
+    Then visualizo a mensagem de que não existe usuário "Ops! Não existe nenhum usuário para ser exibido."
 
 Scenario: As informações necessárias para atualizar um usuário são: nome e email.
     When localizo usuário para atualizar

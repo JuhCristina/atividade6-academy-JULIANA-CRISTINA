@@ -5,23 +5,13 @@ Given("acessei a tela inicial", () => {
     cy.visit("https://academy-crud-frontend.herokuapp.com/users");
 });
 
-When("informo usuário ou email para atualizar", () => {
-    cy.interceptarAtualizar();
-    cy.wait(1000);
-    atualizarUsuarioPage.pesquisaName("Queen");
-
-});
-
-Then("visualizo o usuário com sucesso", () => {
-    cy.contains("Queen");
-});
-
 When("informo um usuário não cadastrado para atualizar", () => {
-    atualizarUsuarioPage.tempo();
+    atualizarUsuarioPage.criarUsuarioParaTeste();
+    cy.wait(1000);
     atualizarUsuarioPage.pesquisaName("Barata Voadora");
 });
 
-Then("visualizo a mensagem {string}", (mensagemErroUsuario) => {
+Then("visualizo a mensagem de que não existe usuário {string}", (mensagemErroUsuario) => {
     cy.contains(mensagemErroUsuario).should("be.visible");
 });
 
@@ -160,4 +150,15 @@ And("atualizo informações e cancelo operação", () => {
 
 Then("visualizo que alteração não foi realizada", () => {
     cy.contains("button", "Editar").should("be.visible");
+});
+
+When("informo usuário ou email para atualizar", () => {
+    cy.interceptarAtualizar();
+    cy.wait(1000);
+    atualizarUsuarioPage.pesquisaName("Queen");
+
+});
+
+Then("visualizo o usuário com sucesso", () => {
+    cy.contains("Queen");
 });
